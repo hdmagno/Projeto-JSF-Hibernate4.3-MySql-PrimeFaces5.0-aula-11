@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<p:panel header="Cadastro de Aluno">
+		<h:form id="form1">
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome" />
+				<p:inputText value="#{mb.aluno.nome}" required="required" />
+				<h:outputText value="Disciplina" />
+				<p:inputText value="#{mb.aluno.disciplina}" required="required" />
+				<h:outputText value="Nota1" />
+				<p:inputText value="#{mb.aluno.nota1}" required="required" />
+				<h:outputText value="Nota2" />
+				<p:inputText value="#{mb.aluno.nota2}" required="required" />
+				<p:commandButton value="Calcular Média" action="#{mb.calcular}"
+					update=":form1" ajax="true"></p:commandButton>
+				<h:outputText value="***" />
+				<h:outputText value="Média" />
+				<p:inputText value="#{mb.aluno.media}" readonly="true" />
+				<p:commandButton value="cadastrar" action="#{mb.cadastrar}"
+					update=":form1,:form2" ajax="true" />
+			</p:panelGrid>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+	<p:panel header="Lista dos dados">
+		<h:form id="form2">
+			<p:dataList value="#{mb.alunos}" var="linha">#{linha.nome}, #{linha.disciplina}, #{linha.media}</p:dataList>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
